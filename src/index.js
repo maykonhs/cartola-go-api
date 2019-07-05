@@ -22,4 +22,4 @@ app.use(express.json());
 app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads', 'resized')));
 app.use(require('./routes'));
 
-server.listen(process.env.PORT || 3333);
+server.listen(process.env.PORT || 3000);
