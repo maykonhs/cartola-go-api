@@ -2,7 +2,7 @@ const Matches = require('../models/Matches');
 
 module.exports = {
   async index(req, res) {
-    const matches = await Matches.find().sort('-createdAt');
+    const matches = await Matches.find().sort('-createdAt').limit(1);
     return res.json(matches);
   },
   async indexId(req, res) {
