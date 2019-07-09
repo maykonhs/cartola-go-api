@@ -4,6 +4,7 @@ const uploadConfig = require('./config/upload');
 const PlayerController = require('./controllers/PlayerController');
 const TeamController = require('./controllers/TeamController');
 const MatchesController = require('./controllers/MatchesController');
+const HistoryController = require('./controllers/HistoryController');
 
 const routes = new express.Router();
 const upload = multer(uploadConfig);
@@ -20,5 +21,9 @@ routes.get('/matches/:id', MatchesController.indexId);
 routes.get('/matches', MatchesController.index);
 routes.post('/matches', MatchesController.store);
 routes.post('/matches/:id', MatchesController.update);
+routes.get('/history/:id', HistoryController.indexId);
+routes.get('/history', HistoryController.index);
+routes.post('/history', HistoryController.store);
+routes.post('/history/:id', HistoryController.update);
 
 module.exports = routes;
