@@ -2,7 +2,22 @@ const History = require('../models/History');
 
 module.exports = {
   async index(req, res) {
-    const history = await History.find().sort('-createdAt');
+    const response = await History.find().sort('-createdAt');
+    const history = [];
+    response.map(item => {
+      const {
+        _id,
+        round,
+        createdAt,
+        updatedAt,
+      } = item;
+      history.push({
+        _id,
+        round,
+        createdAt,
+        updatedAt,
+      });
+    })
     return res.json(history);
   },
   async indexId(req, res) {
