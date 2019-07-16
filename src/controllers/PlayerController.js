@@ -57,15 +57,19 @@ module.exports = {
       value,
       appreciation,
     } = req.body;
-    const { filename: photo } = req.file;
-    await sharp(req.file.path)
-      .resize(64)
-      .png()
-      .toFile(
-        path.resolve(req.file.destination, 'resized', photo)
-      )
-    
-    fs.unlinkSync(req.file.path);
+    let photo = undefined;
+    console.log(req.file);
+    if (req.file) {
+      photo = req.file.filename;
+      await sharp(req.file.path)
+        .resize(64)
+        .png()
+        .toFile(
+          path.resolve(req.file.destination, 'resized', photo)
+        )
+      
+      fs.unlinkSync(req.file.path);
+    }
 
     const player = await Player.findById(req.params.id);
 
